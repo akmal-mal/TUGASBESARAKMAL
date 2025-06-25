@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kontak - Akmal Maulana</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Georgia", serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #f8f8f8 0%, #e8f4f0 100%);
+        min-height: 100vh;
+      }
+
+      /* Header Styles */
+      .header {
+        background-color: #4a9d7c;
+        padding: 15px 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+      }
+
+      .logo {
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+
+      .nav-menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: opacity 0.3s ease;
+      }
+
+      .nav-menu a:hover {
+        opacity: 0.8;
+      }
+
+      .nav-menu a.active {
+        opacity: 0.8;
+        text-decoration: underline;
+      }
+
+      /* Mobile Menu Toggle */
+      .mobile-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .mobile-toggle span {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        margin: 3px 0;
+        transition: 0.3s;
+      }
+
+      /* Main Content */
+      .main-content {
+        margin-top: 80px;
+        padding: 60px 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Page Header */
+      .page-header {
+        text-align: center;
+        margin-bottom: 60px;
+        padding: 40px 0;
+      }
+
+      .page-title {
+        font-size: 48px;
+        color: #ff6b35;
+        margin-bottom: 20px;
+        animation: fadeInUp 0.8s ease;
+      }
+
+      .page-subtitle {
+        font-size: 20px;
+        color: #4a9d7c;
+        max-width: 600px;
+        margin: 0 auto;
+        animation: fadeInUp 0.8s ease 0.2s both;
+      }
+
+      /* Contact Section */
+      .contact-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        margin-bottom: 60px;
+      }
+
+      .contact-info {
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        animation: fadeInLeft 0.8s ease 0.4s both;
+      }
+
+      .contact-info h3 {
+        font-size: 28px;
+        color: #ff6b35;
+        margin-bottom: 30px;
+      }
+
+      .contact-items {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+      }
+
+      .contact-item:hover {
+        transform: translateX(10px);
+      }
+
+      .contact-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #ff6b35, #f7931e);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+        flex-shrink: 0;
+      }
+
+      .contact-details h4 {
+        color: #4a9d7c;
+        margin-bottom: 5px;
+        font-size: 18px;
+      }
+
+      .contact-details p {
+        color: #666;
+        font-size: 16px;
+      }
+
+      .contact-details a {
+        color: #4a9d7c;
+        text-decoration: none;
+      }
+
+      .contact-details a:hover {
+        text-decoration: underline;
+      }
+
+      /* Contact Form */
+      .contact-form {
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        animation: fadeInRight 0.8s ease 0.4s both;
+      }
+
+      .contact-form h3 {
+        font-size: 28px;
+        color: #ff6b35;
+        margin-bottom: 30px;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #4a9d7c;
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #e8f4f0;
+        border-radius: 8px;
+        font-size: 16px;
+        font-family: inherit;
+        transition: all 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #4a9d7c;
+        box-shadow: 0 0 0 3px rgba(74, 157, 124, 0.1);
+      }
+
+      .form-group textarea {
+        height: 120px;
+        resize: vertical;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .submit-btn {
+        background: linear-gradient(135deg, #ff6b35, #f7931e);
+        color: white;
+        padding: 15px 40px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+      }
+
+      .submit-btn:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      /* Map Section */
+      .map-section {
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin-bottom: 60px;
+        animation: fadeInUp 0.8s ease 0.6s both;
+      }
+
+      .map-section h3 {
+        font-size: 28px;
+        color: #ff6b35;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .map-placeholder {
+        width: 100%;
+        height: 300px;
+        background: linear-gradient(135deg, #4a9d7c, #ff6b35);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      /* FAQ Section */
+      .faq-section {
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        animation: fadeInUp 0.8s ease 0.8s both;
+      }
+
+      .faq-section h3 {
+        font-size: 28px;
+        color: #ff6b35;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .faq-item {
+        margin-bottom: 20px;
+        border: 1px solid #e8f4f0;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .faq-question {
+        background: #f8f9fa;
+        padding: 20px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        font-weight: bold;
+        color: #4a9d7c;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .faq-question:hover {
+        background: #e8f4f0;
+      }
+
+      .faq-answer {
+        padding: 0 20px;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        color: #666;
+      }
+
+      .faq-answer.active {
+        padding: 20px;
+        max-height: 200px;
+      }
+
+      .faq-toggle {
+        font-size: 18px;
+        transition: transform 0.3s ease;
+      }
+
+      .faq-toggle.active {
+        transform: rotate(180deg);
+      }
+
+      /* Footer */
+      .footer {
+        background: #333;
+        color: white;
+        text-align: center;
+        padding: 40px 0;
+        margin-top: 60px;
+      }
+
+      /* Success Message */
+      .success-message {
+        display: none;
+        background: #d4edda;
+        color: #155724;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border: 1px solid #c3e6cb;
+      }
+
+      .success-message.show {
+        display: block;
+        animation: fadeInUp 0.5s ease;
+      }
+
+      /* Error Message */
+      .error-message {
+        display: none;
+        background: #f8d7da;
+        color: #721c24;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border: 1px solid #f5c6cb;
+      }
+
+      .error-message.show {
+        display: block;
+        animation: fadeInUp 0.5s ease;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .mobile-toggle {
+          display: flex;
+        }
+
+        .nav-menu {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          background-color: #4a9d7c;
+          flex-direction: column;
+          padding: 20px;
+          gap: 20px;
+        }
+
+        .nav-menu.active {
+          display: flex;
+        }
+
+        .page-title {
+          font-size: 36px;
+        }
+
+        .page-subtitle {
+          font-size: 18px;
+        }
+
+        .contact-section {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-info,
+        .contact-form,
+        .map-section,
+        .faq-section {
+          padding: 30px 20px;
+        }
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav-container">
+        <a href="index.html" class="logo">Welcome To My Web</a>
+        <div class="mobile-toggle" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="hobi.html">Hobi</a></li>
+          <li><a href="kontak.html" class="active">Kontak</a></li>
+          <li><a href="sosialmedia.html">Sosial Media</a></li>
+          <li><a href="pesan.html">Pesan</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+          <h1 class="page-title">Hubungi Saya</h1>
+          <p class="page-subtitle">
+            Mari terhubung dan berkolaborasi bersama! Saya selalu terbuka untuk
+            diskusi tentang proyek baru, kolaborasi, atau sekadar berbagi
+            pengalaman dalam dunia IT.
+          </p>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+          <!-- Contact Info -->
+          <div class="contact-info">
+            <h3>Informasi Kontak</h3>
+            <div class="contact-items">
+              <div class="contact-item">
+                <div class="contact-icon">📧</div>
+                <div class="contact-details">
+                  <h4>Email</h4>
+                  <p>
+                    <a href="mailto:akmalfariz122@gmail.com"
+                      >akmalfariz122@gmail.com</a
+                    >
+                  </p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">📱</div>
+                <div class="contact-details">
+                  <h4>WhatsApp</h4>
+                  <p><a href="tel:+628993324326">+62 899-3324-326</a></p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div class="contact-details">
+                  <h4>Lokasi</h4>
+                  <p>Tangerang, Indonesia</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">💼</div>
+                <div class="contact-details">
+                  <h4>Status</h4>
+                  <p>Tersedia untuk freelance projects</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">⏰</div>
+                <div class="contact-details">
+                  <h4>Jam Kerja</h4>
+                  <p>Senin - Jumat: 09:00 - 17:00 WIB</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form">
+            <h3>Kirim Pesan</h3>
+            <div class="success-message" id="successMessage">
+              Terima kasih! Pesan Anda telah berhasil dikirim. Saya akan
+              menghubungi Anda segera.
+            </div>
+            <div class="error-message" id="errorMessage">
+              Terjadi kesalahan saat mengirim pesan. Silakan coba lagi atau
+              hubungi langsung via WhatsApp.
+            </div>
+
+            <form
+              action="https://formspree.io/f/xgvypknb"
+              method="POST"
+              id="contactForm"
+            >
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">Nama Depan *</label>
+                  <input type="text" id="firstName" name="firstName" required />
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Nama Belakang</label>
+                  <input type="text" id="lastName" name="lastName" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Email *</label>
+                  <input type="email" id="email" name="_replyto" required />
+                </div>
+                <div class="form-group">
+                  <label for="phone">Nomor Telepon</label>
+                  <input type="tel" id="phone" name="phone" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject *</label>
+                <input type="text" id="subject" name="_subject" required />
+              </div>
+              <div class="form-group">
+                <label for="category">Kategori</label>
+                <select id="category" name="category">
+                  <option value="">Pilih kategori</option>
+                  <option value="collaboration">Kolaborasi Project</option>
+                  <option value="job">Job Opportunity</option>
+                  <option value="consultation">Konsultasi IT</option>
+                  <option value="freelance">Freelance Work</option>
+                  <option value="others">Lainnya</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Pesan *</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Ceritakan lebih detail tentang yang ingin Anda sampaikan..."
+                  required
+                ></textarea>
+              </div>
+
+              <!-- Hidden fields untuk Formspree -->
+              <input type="hidden" name="_captcha" value="false" />
+              <input
+                type="hidden"
+                name="_next"
+                value="https://akmal-maulana.com/kontak.html?success=true"
+              />
+
+              <button type="submit" class="submit-btn">Kirim Pesan</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="map-section">
+          <h3>Lokasi</h3>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0680118392186!2d106.6982183!3d-6.2443086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fa404ab0fd2b%3A0xf512440baa8ee28d!2sJl.%20Pd.%20Kacang%20No.44%2C%20RT.001%2FRW.006%2C%20Parung%20Serab%2C%20Kec.%20Ciledug%2C%20Kota%20Tangerang%2C%20Banten%2015153!5e1!3m2!1sid!2sid!4v1719210706943!5m2!1sid!2sid"
+            width="100%"
+            height="300"
+            style="border: 0; border-radius: 10px"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          >
+          </iframe>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+          <h3>Frequently Asked Questions</h3>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>Berapa lama waktu respons untuk pesan yang dikirim?</span>
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Saya berusaha merespons semua pesan dalam waktu 24 jam pada hari
+              kerja. Untuk pertanyaan urgent, silakan hubungi via WhatsApp.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>Apakah Anda menerima proyek freelance?</span>
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Ya, saya terbuka untuk proyek freelance terutama di bidang IT
+              support, network configuration, dan web development. Mari
+              diskusikan kebutuhan Anda!
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>Layanan apa saja yang Anda tawarkan?</span>
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Saya menawarkan layanan IT support, network administration,
+              troubleshooting sistem, instalasi perangkat, dan konsultasi IT
+              untuk UMKM.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>Bagaimana cara menghubungi untuk konsultasi gratis?</span>
+              <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+              Anda dapat menghubungi saya melalui WhatsApp atau email dengan
+              menyebutkan bahwa Anda tertarik dengan konsultasi gratis. Saya
+              akan merespons dengan jadwal yang tersedia.
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 Akmal Maulana 01SIFE004 . All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      function toggleMenu() {
+        const navMenu = document.getElementById("navMenu");
+        const mobileToggle = document.querySelector(".mobile-toggle");
+        navMenu.classList.toggle("active");
+        mobileToggle.classList.toggle("active");
+      }
+
+      // Formspree form submission handler
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Tampilkan loading state
+          const submitBtn = document.querySelector(".submit-btn");
+          const originalText = submitBtn.textContent;
+          submitBtn.textContent = "Mengirim...";
+          submitBtn.disabled = true;
+
+          const form = e.target;
+          const formData = new FormData(form);
+
+          fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: {
+              Accept: "application/json",
+            },
+          })
+            .then((response) => {
+              if (response.ok) {
+                // Tampilkan success message
+                const successMessage =
+                  document.getElementById("successMessage");
+                const errorMessage = document.getElementById("errorMessage");
+
+                successMessage.classList.add("show");
+                errorMessage.classList.remove("show");
+
+                // Reset form
+                form.reset();
+
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                  successMessage.classList.remove("show");
+                }, 5000);
+
+                // Scroll to success message
+                successMessage.scrollIntoView({
+                  behavior: "smooth",
+                  block: "center",
+                });
+              } else {
+                throw new Error("Network response was not ok");
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+
+              // Tampilkan error message
+              const errorMessage = document.getElementById("errorMessage");
+              const successMessage = document.getElementById("successMessage");
+
+              errorMessage.classList.add("show");
+              successMessage.classList.remove("show");
+
+              // Hide error message after 5 seconds
+              setTimeout(() => {
+                errorMessage.classList.remove("show");
+              }, 5000);
+            })
+            .finally(() => {
+              // Kembalikan button ke state normal
+              submitBtn.textContent = originalText;
+              submitBtn.disabled = false;
+            });
+        });
+
+      // Check for success parameter in URL (when redirected back from Formspree)
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get("success") === "true") {
+          const successMessage = document.getElementById("successMessage");
+          successMessage.classList.add("show");
+
+          // Remove success parameter from URL
+          window.history.replaceState(
+            {},
+            document.title,
+            window.location.pathname
+          );
+
+          // Hide success message after 10 seconds
+          setTimeout(() => {
+            successMessage.classList.remove("show");
+          }, 10000);
+        }
+      });
+
+      // FAQ toggle functionality
+      function toggleFAQ(element) {
+        const answer = element.nextElementSibling;
+        const toggle = element.querySelector(".faq-toggle");
+
+        answer.classList.toggle("active");
+        toggle.classList.toggle("active");
+
+        // Close other FAQ items
+        document.querySelectorAll(".faq-answer").forEach((item) => {
+          if (item !== answer) {
+            item.classList.remove("active");
+          }
+        });
+
+        document.querySelectorAll(".faq-toggle").forEach((item) => {
+          if (item !== toggle) {
+            item.classList.remove("active");
+          }
+        });
+      }
+
+      // Header scroll effect
+      window.addEventListener("scroll", () => {
+        const header = document.querySelector(".header");
+        if (window.scrollY > 100) {
+          header.style.backgroundColor = "rgba(74, 157, 124, 0.95)";
+          header.style.backdropFilter = "blur(10px)";
+        } else {
+          header.style.backgroundColor = "#4a9d7c";
+          header.style.backdropFilter = "none";
+        }
+      });
+
+      // Close mobile menu when clicking on a link
+      document.querySelectorAll(".nav-menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          const navMenu = document.getElementById("navMenu");
+          const mobileToggle = document.querySelector(".mobile-toggle");
+          navMenu.classList.remove("active");
+          mobileToggle.classList.remove("active");
+        });
+      });
+
+      // Add scroll-to-top functionality
+      window.addEventListener("scroll", () => {
+        const scrollTop = document.documentElement.scrollTop;
+        if (scrollTop > 500) {
+          if (!document.querySelector(".scroll-top")) {
+            const scrollTopBtn = document.createElement("button");
+            scrollTopBtn.className = "scroll-top";
+            scrollTopBtn.innerHTML = "↑";
+            scrollTopBtn.style.cssText = `
+              position: fixed;
+              bottom: 30px;
+              right: 30px;
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              background: linear-gradient(135deg, #ff6b35, #f7931e);
+              color: white;
+              border: none;
+              font-size: 20px;
+              cursor: pointer;
+              z-index: 1000;
+              box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+              transition: all 0.3s ease;
+            `;
+            scrollTopBtn.addEventListener("click", () => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+            scrollTopBtn.addEventListener("mouseenter", () => {
+              scrollTopBtn.style.transform = "scale(1.1)";
+            });
+            scrollTopBtn.addEventListener("mouseleave", () => {
+              scrollTopBtn.style.transform = "scale(1)";
+            });
+            document.body.appendChild(scrollTopBtn);
+          }
+        } else {
+          const scrollTopBtn = document.querySelector(".scroll-top");
+          if (scrollTopBtn) {
+            scrollTopBtn.remove();
+          }
+        }
+      });
+
+      // Form validation
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        const inputs = form.querySelectorAll(
+          "input[required], textarea[required]"
+        );
+
+        inputs.forEach((input) => {
+          input.addEventListener("blur", function () {
+            if (!this.value.trim()) {
+              this.style.borderColor = "#e74c3c";
+            } else {
+              this.style.borderColor = "#4a9d7c";
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

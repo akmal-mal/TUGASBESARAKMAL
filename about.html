@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - Akmal Maulana</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Georgia", serif;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      /* Header Styles */
+      .header {
+        background-color: #4a9d7c;
+        padding: 15px 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+      }
+
+      .logo {
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+
+      .nav-menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: opacity 0.3s ease;
+      }
+
+      .nav-menu a:hover {
+        opacity: 0.8;
+      }
+
+      .nav-menu a.active {
+        opacity: 1;
+        border-bottom: 2px solid white;
+        padding-bottom: 5px;
+      }
+
+      /* Mobile Menu Toggle */
+      .mobile-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .mobile-toggle span {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        margin: 3px 0;
+        transition: 0.3s;
+      }
+
+      /* Page Header */
+      .page-header {
+        background: linear-gradient(135deg, #4a9d7c, #ff6b35);
+        color: white;
+        padding: 120px 0 80px;
+        text-align: center;
+        margin-top: 70px;
+      }
+
+      .page-header h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+      }
+
+      .page-header p {
+        font-size: 20px;
+        max-width: 600px;
+        margin: 0 auto;
+        opacity: 0.9;
+      }
+
+      /* Main Content */
+      .main-content {
+        padding: 80px 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* About Section */
+      .about-detailed {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 60px;
+        align-items: start;
+        margin-bottom: 80px;
+      }
+
+      .about-image {
+        position: relative;
+      }
+
+      .about-image img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .decorative-bg {
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        width: calc(100% + 40px);
+        height: calc(100% + 40px);
+        background: linear-gradient(45deg, #ff6b35, #f7931e, #4a9d7c);
+        border-radius: 20px;
+        z-index: -1;
+        opacity: 0.1;
+      }
+
+      .about-content {
+        padding: 20px 0;
+      }
+
+      .about-content h2 {
+        font-size: 36px;
+        color: #ff6b35;
+        margin-bottom: 30px;
+      }
+
+      .about-content p {
+        font-size: 16px;
+        color: #666;
+        line-height: 1.8;
+        margin-bottom: 20px;
+      }
+
+      .about-content .highlight {
+        background: linear-gradient(135deg, #ff6b35, #f7931e);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+      }
+
+      /* Skills Section */
+      .skills-section {
+        background: linear-gradient(135deg, #f8f8f8 0%, #e8f4f0 100%);
+        padding: 80px 0;
+        margin: 80px 0;
+        border-radius: 20px;
+      }
+
+      .skills-section h2 {
+        font-size: 36px;
+        color: #ff6b35;
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+      }
+
+      .skill-category {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .skill-category:hover {
+        transform: translateY(-5px);
+      }
+
+      .skill-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #ff6b35, #f7931e);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 30px;
+        color: white;
+      }
+
+      .skill-category h3 {
+        font-size: 20px;
+        color: #ff6b35;
+        margin-bottom: 15px;
+      }
+
+      .skill-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .skill-list li {
+        background: #e8f4f0;
+        color: #4a9d7c;
+        padding: 8px 15px;
+        margin: 8px 0;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      /* Education Section */
+      .education-section {
+        margin: 80px 0;
+      }
+
+      .education-section h2 {
+        font-size: 36px;
+        color: #ff6b35;
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .education-timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .education-timeline::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(to bottom, #ff6b35, #4a9d7c);
+        transform: translateX(-50%);
+      }
+
+      .education-item {
+        position: relative;
+        width: 50%;
+        padding: 20px 40px;
+        margin-bottom: 40px;
+      }
+
+      .education-item:nth-child(odd) {
+        left: 0;
+        text-align: right;
+      }
+
+      .education-item:nth-child(even) {
+        left: 50%;
+        text-align: left;
+      }
+
+      .education-item::before {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #ff6b35;
+        border-radius: 50%;
+        top: 30px;
+      }
+
+      .education-item:nth-child(odd)::before {
+        right: -10px;
+      }
+
+      .education-item:nth-child(even)::before {
+        left: -10px;
+      }
+
+      .education-card {
+        background: white;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .education-year {
+        background: linear-gradient(135deg, #ff6b35, #f7931e);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: bold;
+        display: inline-block;
+        margin-bottom: 15px;
+      }
+
+      .education-title {
+        font-size: 18px;
+        color: #ff6b35;
+        margin-bottom: 10px;
+      }
+
+      .education-school {
+        font-size: 16px;
+        color: #4a9d7c;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .education-description {
+        color: #666;
+        font-size: 14px;
+      }
+
+      /* Goals Section */
+      .goals-section {
+        background: linear-gradient(135deg, #4a9d7c, #ff6b35);
+        color: white;
+        padding: 80px 0;
+        border-radius: 20px;
+        margin: 80px 0;
+      }
+
+      .goals-section h2 {
+        font-size: 36px;
+        text-align: center;
+        margin-bottom: 50px;
+        color: white;
+      }
+
+      .goals-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .goal-card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 30px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .goal-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .goal-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 24px;
+      }
+
+      .goal-card h3 {
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+
+      .goal-card p {
+        opacity: 0.9;
+        line-height: 1.6;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        text-align: center;
+        padding: 60px 0;
+      }
+
+      .cta-button {
+        background-color: #ff6b35;
+        color: white;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        margin: 0 10px;
+      }
+
+      .cta-button:hover {
+        background-color: #e55a2b;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+      }
+
+      .cta-button.secondary {
+        background-color: transparent;
+        border: 2px solid #ff6b35;
+        color: #ff6b35;
+      }
+
+      .cta-button.secondary:hover {
+        background-color: #ff6b35;
+        color: white;
+      }
+
+      /* Footer */
+      .footer {
+        background: #333;
+        color: white;
+        text-align: center;
+        padding: 40px 0;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .mobile-toggle {
+          display: flex;
+        }
+
+        .nav-menu {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          background-color: #4a9d7c;
+          flex-direction: column;
+          padding: 20px;
+          gap: 20px;
+        }
+
+        .nav-menu.active {
+          display: flex;
+        }
+
+        .page-header h1 {
+          font-size: 36px;
+        }
+
+        .page-header p {
+          font-size: 16px;
+        }
+
+        .about-detailed {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .about-content h2 {
+          font-size: 28px;
+        }
+
+        .skills-section h2,
+        .education-section h2,
+        .goals-section h2 {
+          font-size: 28px;
+        }
+
+        .education-timeline::before {
+          left: 20px;
+        }
+
+        .education-item {
+          width: 100%;
+          left: 0 !important;
+          text-align: left !important;
+          padding-left: 60px;
+        }
+
+        .education-item::before {
+          left: 10px !important;
+        }
+
+        .cta-button {
+          display: block;
+          margin: 10px auto;
+          width: 200px;
+        }
+      }
+
+      /* Animations */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.8s ease forwards;
+      }
+
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .slide-in-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        animation: slideInLeft 1s ease forwards;
+      }
+
+      .slide-in-right {
+        opacity: 0;
+        transform: translateX(50px);
+        animation: slideInRight 1s ease forwards;
+      }
+
+      @keyframes slideInLeft {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav-container">
+        <a href="index.html" class="logo">Welcome To My Web</a>
+        <div class="mobile-toggle" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="hobi.html">Hobi</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+          <li><a href="sosialmedia.html">Sosial Media </a></li>
+          <li><a href="pesan.html">Pesan</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="fade-in">About Me</h1>
+        <p class="fade-in">
+          Mengenal lebih dekat tentang perjalanan, passion, dan visi saya dalam
+          dunia teknologi
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- About Detailed Section -->
+        <section class="about-detailed">
+          <div class="about-image slide-in-left">
+            <div class="decorative-bg"></div>
+            <img src="https://i.imgur.com/addGV4S.jpeg" alt="Akmal Maulana" />
+          </div>
+          <div class="about-content slide-in-right">
+            <h2>Perkenalan</h2>
+            <p>
+              Saya <span class="highlight">Akmal Maulana</span>, seorang
+              mahasiswa Sistem Informasi semester 1 di Universitas Pamulang
+              (UNPAM). Saat ini saya bekerja sebagai Engineer On Site di sebuah
+              perusahaan telekomunikasi swasta di Jakarta yang fokus pada
+              managed service provider.
+            </p>
+            <p>
+              Perjalanan saya di dunia IT dimulai dari rasa penasaran yang besar
+              terhadap teknologi. Dari hobi sederhana memperbaiki komputer
+              hingga kini bekerja di bidang telekomunikasi, setiap langkah telah
+              membentuk pemahaman saya tentang betapa pentingnya teknologi dalam
+              kehidupan modern.
+            </p>
+            <p>
+              Passion saya terhadap dunia IT tidak hanya sebatas pekerjaan,
+              tetapi juga sebagai media untuk terus belajar dan berkembang. Saya
+              percaya bahwa
+              <span class="highlight">teknologi adalah kunci</span> untuk
+              menciptakan solusi yang dapat membantu banyak orang.
+            </p>
+            <p>
+              Visi saya adalah menjadi seorang IT professional yang tidak hanya
+              kompeten secara teknis, tetapi juga dapat berkontribusi dalam
+              transformasi digital Indonesia. Dengan fleksibilitas kerja seperti
+              remote work yang semakin populer, saya melihat peluang besar untuk
+              mengembangkan karir di bidang ini.
+            </p>
+          </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills-section fade-in">
+          <h2>Keahlian & Teknologi</h2>
+          <div class="skills-grid">
+            <div class="skill-category">
+              <div class="skill-icon">🌐</div>
+              <h3>Network & Infrastructure</h3>
+              <ul class="skill-list">
+                <li>Cisco Networking</li>
+                <li>Mikrotik Configuration</li>
+                <li>Ubiquiti Management</li>
+                <li>Fiber Optic Installation</li>
+                <li>Network Troubleshooting</li>
+              </ul>
+            </div>
+            <div class="skill-category">
+              <div class="skill-icon">💻</div>
+              <h3>System Administration</h3>
+              <ul class="skill-list">
+                <li>Windows Server</li>
+                <li>Linux Administration</li>
+                <li>System Monitoring</li>
+                <li>Hardware Maintenance</li>
+                <li>Remote Support</li>
+              </ul>
+            </div>
+            <div class="skill-category">
+              <div class="skill-icon">🛠️</div>
+              <h3>Tools & Software</h3>
+              <ul class="skill-list">
+                <li>Microsoft Office Suite</li>
+                <li>Network Monitoring Tools</li>
+                <li>Project Management</li>
+                <li>Documentation</li>
+                <li>Customer Support</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="education-section fade-in">
+          <h2>Pendidikan & Sertifikasi</h2>
+          <div class="education-timeline">
+            <div class="education-item">
+              <div class="education-card">
+                <span class="education-year">2025 - Sekarang</span>
+                <h3 class="education-title">Sistem Informasi</h3>
+                <p class="education-school">Universitas Pamulang (UNPAM)</p>
+                <p class="education-description">
+                  Fokus pada pengembangan sistem informasi, database management,
+                  dan teknologi web. Semester 1 dengan IPK yang memuaskan.
+                </p>
+              </div>
+            </div>
+            <div class="education-item">
+              <div class="education-card">
+                <span class="education-year">2022</span>
+                <h3 class="education-title">Network Technician Certificate</h3>
+                <p class="education-school">Cisco Networking Academy</p>
+                <p class="education-description">
+                  Sertifikasi dalam bidang jaringan komputer, konfigurasi router
+                  dan switch, serta troubleshooting network.
+                </p>
+                <img
+                  src="sertifikatccna.jpg"
+                  alt="Network Technician Certificate"
+                  style="
+                    margin-top: 15px;
+                    width: 100%;
+                    height: 200px;
+                    object-fit: cover;
+                    border-radius: 10px;
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                  "
+                />
+              </div>
+            </div>
+            <div class="education-item">
+              <div class="education-card">
+                <span class="education-year">2019</span>
+                <h3 class="education-title">SMK Teknik Komputer Jaringan</h3>
+                <p class="education-school">SMK Pgri 11 Ciledug</p>
+                <p class="education-description">
+                  Lulusan dengan keahlian khusus dalam bidang teknik komputer
+                  dan jaringan. Fokus pada hardware dan networking.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Goals Section -->
+        <section class="goals-section fade-in">
+          <div class="container">
+            <h2>Visi & Tujuan</h2>
+            <div class="goals-grid">
+              <div class="goal-card">
+                <div class="goal-icon">🎯</div>
+                <h3>Karir Profesional</h3>
+                <p>
+                  Menjadi seorang IT professional yang kompeten dan diakui dalam
+                  bidang sistem informasi dan network engineering.
+                </p>
+              </div>
+              <div class="goal-card">
+                <div class="goal-icon">🚀</div>
+                <h3>Inovasi Teknologi</h3>
+                <p>
+                  Berkontribusi dalam pengembangan solusi teknologi yang dapat
+                  membantu transformasi digital di Indonesia.
+                </p>
+              </div>
+              <div class="goal-card">
+                <div class="goal-icon">🎓</div>
+                <h3>Pembelajaran Berkelanjutan</h3>
+                <p>
+                  Terus mengembangkan skill dan pengetahuan melalui kursus,
+                  sertifikasi, dan pengalaman praktis di industri.
+                </p>
+              </div>
+              <div class="goal-card">
+                <div class="goal-icon">🤝</div>
+                <h3>Kolaborasi & Networking</h3>
+                <p>
+                  Membangun jaringan profesional yang kuat dan berkolaborasi
+                  dengan para ahli di bidang teknologi.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section fade-in">
+          <h2 style="color: #ff6b35; margin-bottom: 30px">Mari Terhubung!</h2>
+          <p
+            style="
+              color: #666;
+              margin-bottom: 40px;
+              max-width: 600px;
+              margin-left: auto;
+              margin-right: auto;
+            "
+          >
+            Tertarik untuk berkolaborasi atau ingin mengetahui lebih lanjut
+            tentang pengalaman dan keahlian saya? Jangan ragu untuk menghubungi
+            saya!
+          </p>
+          <a href="kontak.html" class="cta-button">Hubungi Saya</a>
+          <a href="portfolio.html" class="cta-button secondary"
+            >Lihat Portfolio</a
+          >
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 Akmal Maulana 01SIFE004 . All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      function toggleMenu() {
+        const navMenu = document.getElementById("navMenu");
+        const mobileToggle = document.querySelector(".mobile-toggle");
+
+        navMenu.classList.toggle("active");
+        mobileToggle.classList.toggle("active");
+      }
+
+      // Close mobile menu when clicking on a link
+      document.querySelectorAll(".nav-menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          const navMenu = document.getElementById("navMenu");
+          const mobileToggle = document.querySelector(".mobile-toggle");
+          navMenu.classList.remove("active");
+          mobileToggle.classList.remove("active");
+        });
+      });
+
+      // Header scroll effect
+      window.addEventListener("scroll", () => {
+        const header = document.querySelector(".header");
+        if (window.scrollY > 100) {
+          header.style.backgroundColor = "rgba(74, 157, 124, 0.95)";
+          header.style.backdropFilter = "blur(10px)";
+        } else {
+          header.style.backgroundColor = "#4a9d7c";
+          header.style.backdropFilter = "none";
+        }
+      });
+
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationDelay = "0s";
+            entry.target.style.animationPlayState = "running";
+          }
+        });
+      }, observerOptions);
+
+      // Observe all animated elements
+      document.addEventListener("DOMContentLoaded", () => {
+        const animatedElements = document.querySelectorAll(
+          ".fade-in, .slide-in-left, .slide-in-right"
+        );
+        animatedElements.forEach((element, index) => {
+          element.style.animationDelay = `${index * 0.1}s`;
+          element.style.animationPlayState = "paused";
+          observer.observe(element);
+        });
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Add scroll-to-top functionality
+      window.addEventListener("scroll", () => {
+        const scrollTop = document.documentElement.scrollTop;
+        if (scrollTop > 500) {
+          if (!document.querySelector(".scroll-top")) {
+            const scrollTopBtn = document.createElement("button");
+            scrollTopBtn.className = "scroll-top";
+            scrollTopBtn.innerHTML = "↑";
+            scrollTopBtn.style.cssText = `
+              position: fixed;
+              bottom: 30px;
+              right: 30px;
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              background: linear-gradient(135deg, #ff6b35, #f7931e);
+              color: white;
+              border: none;
+              font-size: 20px;
+              cursor: pointer;
+              z-index: 1000;
+              box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+              transition: all 0.3s ease;
+            `;
+            scrollTopBtn.addEventListener("click", () => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+            scrollTopBtn.addEventListener("mouseenter", () => {
+              scrollTopBtn.style.transform = "scale(1.1)";
+            });
+            scrollTopBtn.addEventListener("mouseleave", () => {
+              scrollTopBtn.style.transform = "scale(1)";
+            });
+            document.body.appendChild(scrollTopBtn);
+          }
+        } else {
+          const scrollTopBtn = document.querySelector(".scroll-top");
+          if (scrollTopBtn) {
+            scrollTopBtn.remove();
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

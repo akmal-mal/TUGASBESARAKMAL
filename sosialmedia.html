@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sosial Media - Akmal Maulana</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Georgia", serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
+
+      /* Header Styles */
+      .header {
+        background: rgba(74, 157, 124, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 15px 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+      }
+
+      .logo {
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+
+      .nav-menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .nav-menu a:hover {
+        color: #ff6b35;
+        transform: translateY(-2px);
+      }
+
+      .nav-menu a.active {
+        color: #ff6b35;
+      }
+
+      /* Main Content */
+      .main-content {
+        padding-top: 100px;
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Hero Section */
+      .hero-section {
+        text-align: center;
+        padding: 60px 0;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        margin: 40px 0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .hero-title {
+        font-size: 48px;
+        color: white;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-subtitle {
+        font-size: 20px;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 600px;
+        margin: 0 auto 40px;
+        line-height: 1.6;
+      }
+
+      /* Social Media Grid */
+      .social-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin: 60px 0;
+      }
+
+      .social-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 40px;
+        text-align: center;
+        transition: all 0.4s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        position: relative;
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .social-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .social-card:hover::before {
+        left: 100%;
+      }
+
+      .social-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .social-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        font-size: 35px;
+        color: white;
+        position: relative;
+        z-index: 2;
+      }
+
+      .social-instagram {
+        background: linear-gradient(
+          45deg,
+          #405de6,
+          #5851db,
+          #833ab4,
+          #c13584,
+          #e1306c,
+          #fd1d1d
+        );
+        animation: instagram-pulse 2s ease-in-out infinite alternate;
+      }
+
+      .social-linkedin {
+        background: linear-gradient(45deg, #0077b5, #00a0dc);
+        animation: linkedin-pulse 2s ease-in-out infinite alternate;
+      }
+
+      .social-github {
+        background: linear-gradient(45deg, #333, #666);
+        animation: github-pulse 2s ease-in-out infinite alternate;
+      }
+
+      .social-tiktok {
+        background: linear-gradient(45deg, #ff0050, #00f2ea);
+        animation: tiktok-pulse 2s ease-in-out infinite alternate;
+      }
+
+      @keyframes instagram-pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(193, 53, 132, 0.7);
+        }
+        100% {
+          box-shadow: 0 0 0 20px rgba(193, 53, 132, 0);
+        }
+      }
+
+      @keyframes linkedin-pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(0, 119, 181, 0.7);
+        }
+        100% {
+          box-shadow: 0 0 0 20px rgba(0, 119, 181, 0);
+        }
+      }
+
+      @keyframes github-pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(51, 51, 51, 0.7);
+        }
+        100% {
+          box-shadow: 0 0 0 20px rgba(51, 51, 51, 0);
+        }
+      }
+
+      @keyframes tiktok-pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(255, 0, 80, 0.7);
+        }
+        100% {
+          box-shadow: 0 0 0 20px rgba(255, 0, 80, 0);
+        }
+      }
+
+      .social-name {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .social-handle {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 15px;
+      }
+
+      .social-description {
+        font-size: 14px;
+        color: #888;
+        line-height: 1.5;
+        margin-bottom: 20px;
+      }
+
+      .social-stats {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        display: block;
+      }
+
+      .stat-label {
+        font-size: 12px;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .follow-button {
+        background: linear-gradient(45deg, #ff6b35, #f7931e);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 15px;
+      }
+
+      .follow-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+      }
+
+      /* Content Section */
+      .content-section {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 40px;
+        margin: 40px 0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .section-title {
+        font-size: 32px;
+        color: white;
+        text-align: center;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .content-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+      }
+
+      .content-item {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        padding: 20px;
+        transition: transform 0.3s ease;
+      }
+
+      .content-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .content-preview {
+        width: 100%;
+        height: 150px;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 18px;
+        margin-bottom: 15px;
+      }
+
+      .content-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 8px;
+      }
+
+      .content-description {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.4;
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 36px;
+        }
+
+        .hero-subtitle {
+          font-size: 18px;
+        }
+
+        .social-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .social-card {
+          padding: 30px;
+        }
+
+        .social-icon {
+          width: 60px;
+          height: 60px;
+          font-size: 25px;
+        }
+
+        .nav-menu {
+          display: none;
+        }
+      }
+
+      /* Floating particles animation */
+      .particle {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        pointer-events: none;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      /* Loading animation */
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+      }
+
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-top: 3px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav-container">
+        <a href="index.html" class="logo">Welcome To My Web</a>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="hobi.html">Hobi</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+          <li><a href="sosialmedia.html" class="active">Sosial Media</a></li>
+          <li><a href="pesan.html">Pesan</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+          <h1 class="hero-title">Jangan Lupa Follow Ya Ges</h1>
+          <p class="hero-subtitle">
+            Terhubung dengan saya di berbagai platform media sosial dan ikuti
+            perjalanan saya dalam dunia teknologi, programming,networking, dan pengembangan
+            diri. Mari berbagi inspirasi dan belajar bersama!
+          </p>
+        </section>
+
+        <!-- Social Media Grid -->
+        <section class="social-grid">
+          <a
+            href="https://www.instagram.com/kotak.amal____/"
+            class="social-card"
+            target="_blank"
+          >
+            <div class="social-icon social-instagram">📷</div>
+            <h3 class="social-name">Instagram</h3>
+            <p class="social-handle">@kotak.amal____</p>
+            <p class="social-description">
+             Instagaram nya ga di gembok jadi aman aja hehehe
+            </p>
+            <div class="social-stats">
+              <div class="stat-item">
+              </div>
+              <div class="stat-item">
+              </div>
+              <div class="stat-item">
+
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/akmal-maulana-48b8ab1a1/"
+            class="social-card"
+            target="_blank"
+          >
+            <div class="social-icon social-linkedin">💼</div>
+            <h3 class="social-name">LinkedIn</h3>
+            <p class="social-handle">Akmal Maulana</p>
+            <p class="social-description">
+              buat yang mau follow Linkedin boleh ya ges biar connect
+            </p>
+            <div class="social-stats">
+              <div class="stat-item">
+          
+              </div>
+              <div class="stat-item">
+          
+              </div>
+              <div class="stat-item">
+     
+              </div>
+            </div>
+           
+          </a>
+
+          <a
+            href="https://github.com/akmal-mal/ProjectAkmalsmst1-8.io"
+            class="social-card"
+            target="_blank"
+          >
+            <div class="social-icon social-github">🐱</div>
+            <h3 class="social-name">GitHub</h3>
+            <p class="social-handle">Akmal-mal</p>
+            <p class="social-description">
+              Repository code untuk berbagai project programming, dari web
+              development hingga script automation. Open source contributions
+              welcome!
+            </p>
+            <div class="social-stats">
+              <div class="stat-item">
+            
+              </div>
+              <div class="stat-item">
+          
+              </div>
+              <div class="stat-item">
+               
+              </div>
+            </div>
+         
+          </a>
+
+          <a
+            href="https://www.tiktok.com/@gawatges"
+            class="social-card"
+            target="_blank"
+          >
+            <div class="social-icon social-tiktok">🎵</div>
+            <h3 class="social-name">TikTok</h3>
+            <p class="social-handle">@gawatges</p>
+            <p class="social-description">
+              Klo ini biasa tempat scroll scroll buat nyari ilmu juga kadang
+              karna akhir akhir ini pada mosting di tiktok sisa lengkapnya nyari di youtube
+            </p>
+            <div class="social-stats">
+              <div class="stat-item">
+
+              </div>
+              <div class="stat-item">
+      
+              </div>
+              <div class="stat-item">
+            
+              </div>
+            </div>
+           
+          </a>
+
+        </section>
+
+      
+
+    <script>
+      // Remove loading overlay when page loads
+      window.addEventListener("load", () => {
+        const loadingOverlay = document.getElementById("loadingOverlay");
+        loadingOverlay.style.opacity = "0";
+        setTimeout(() => {
+          loadingOverlay.style.display = "none";
+        }, 500);
+      });
+
+      // Create floating particles
+      function createParticles() {
+        const particleCount = 50;
+        const body = document.body;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          particle.style.left = Math.random() * 100 + "%";
+          particle.style.top = Math.random() * 100 + "%";
+          particle.style.width = Math.random() * 10 + 5 + "px";
+          particle.style.height = particle.style.width;
+          particle.style.animationDelay = Math.random() * 6 + "s";
+          particle.style.animationDuration = Math.random() * 3 + 3 + "s";
+          body.appendChild(particle);
+        }
+      }
+
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      // Initialize animations
+      document.addEventListener("DOMContentLoaded", () => {
+        createParticles();
+
+        // Animate social cards
+        const socialCards = document.querySelectorAll(".social-card");
+        socialCards.forEach((card, index) => {
+          card.style.opacity = "0";
+          card.style.transform = "translateY(50px)";
+          card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+          card.style.transitionDelay = index * 0.1 + "s";
+          observer.observe(card);
+        });
+
+        // Animate content items
+        const contentItems = document.querySelectorAll(".content-item");
+        contentItems.forEach((item, index) => {
+          item.style.opacity = "0";
+          item.style.transform = "translateY(30px)";
+          item.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+          item.style.transitionDelay = index * 0.1 + "s";
+          observer.observe(item);
+        });
+      });
+
+      // Add click effects to social cards
+      document.querySelectorAll(".social-card").forEach((card) => {
+        card.addEventListener("click", (e) => {
+          // Create ripple effect
+          const ripple = document.createElement("div");
+          const rect = card.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          const x = e.clientX - rect.left - size / 2;
+          const y = e.clientY - rect.top - size / 2;
+
+          ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+
+          card.appendChild(ripple);
+
+          setTimeout(() => {
+            ripple.remove();
+          }, 600);
+        });
+      });
+
+      // Add ripple animation keyframes
+      const style = document.createElement("style");
+      style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+      document.head.appendChild(style);
+
+      // Follow button interactions
+      document.querySelectorAll(".follow-button").forEach((button) => {
+        button.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const originalText = button.textContent;
+          button.textContent = "Following!";
+          button.style.background = "linear-gradient(45deg, #4CAF50, #8BC34A)";
+
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.style.background =
+              "linear-gradient(45deg, #ff6b35, #f7931e)";
+          }, 2000);
+        });
+      });
+
+      // Smooth scrolling for navigation
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Header scroll effect
+      window.addEventListener("scroll", () => {
+        const header = document.querySelector(".header");
+        if (window.scrollY > 100) {
+          header.style.background = "rgba(74, 157, 124, 0.95)";
+          header.style.backdropFilter = "blur(15px)";
+        } else {
+          header.style.background = "rgba(74, 157, 124, 0.95)";
+          header.style.backdropFilter = "blur(10px)";
+        }
+      });
+    </script>
+  </body>
+</html>
